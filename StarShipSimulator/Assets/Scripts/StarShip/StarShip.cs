@@ -25,4 +25,36 @@ public class StarShip : MonoBehaviour
 
     }
  
+    void SimulateEngineBroken(int iEngineLevel,int levelID)
+    {
+        switch (iEngineLevel)
+        {
+            case 0:
+                if(levelID >=0 && levelID <3)
+                {
+                    mEngine_0[levelID].SetWorking(false);
+                }
+                break;
+            case 1:
+                if (levelID >= 0 && levelID < 10)
+                {
+                    mEngine_1[levelID].SetWorking(false);
+                }
+                break;
+            case 2:
+                if (levelID >= 0 && levelID < 20)
+                {
+                    mEngine_2[levelID].SetWorking(false);
+                }
+                break;
+            default:
+                break;
+        }
+        
+    }
+
+    public void SimulateEngine12Broken()
+    {
+        SimulateEngineBroken(1, 2);
+    }
 }

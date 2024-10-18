@@ -73,10 +73,10 @@ public class CameraDefault : MonoBehaviour {
 	public void CalculateDesiredPosition()
 	{
 		 // Evaluate distance
-		 Distance = Mathf.SmoothDamp(Distance, desiredDistance, ref velocityDistance, DistanceSmooth);
+		 //Distance = Mathf.SmoothDamp(Distance, desiredDistance, ref velocityDistance, DistanceSmooth);
 		 
 		 // Calculate desired position -> Note : mouse inputs reversed to align to WorldSpace Axis
-		 desiredPosition = CalculatePosition(mouseY, mouseX, Distance);
+		 desiredPosition = CalculatePosition(mouseY, mouseX, desiredDistance);
 	}
 
 	public Vector3 CalculatePosition(float rotationX, float rotationY, float distance)
@@ -88,10 +88,10 @@ public class CameraDefault : MonoBehaviour {
 
 	public void UpdatePosition()
 	{
-		 var posX = Mathf.SmoothDamp(position.x, desiredPosition.x, ref velX, X_Smooth);
-		 var posY = Mathf.SmoothDamp(position.y, desiredPosition.y, ref velY, Y_Smooth);
-		 var posZ = Mathf.SmoothDamp(position.z, desiredPosition.z, ref velZ, X_Smooth);
-		 position = new Vector3(posX, posY, posZ);
+		var posX = desiredPosition.x;// Mathf.SmoothDamp(position.x, desiredPosition.x, ref velX, X_Smooth);
+		 var posY = desiredPosition.y;// Mathf.SmoothDamp(position.y, desiredPosition.y, ref velY, Y_Smooth);
+        var posZ = desiredPosition.z;// Mathf.SmoothDamp(position.z, desiredPosition.z, ref velZ, X_Smooth);
+        position = new Vector3(posX, posY, posZ);
 		 
 		 transform.position = position;
 		 
